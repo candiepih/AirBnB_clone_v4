@@ -3,24 +3,23 @@ header {
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
+    position: relative;
 }
 header .logo {
     background: url("../images/logo.png") no-repeat;
     left: 20px;
     height: 100%;
 }
-#api_status.available{
-    background-color: #ff545f;
-}
-
-#api_status{
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background: #ccc;
-    float: right;
-    margin-right: 30px;
-    position: relative;
+#api_status {
+    position: absolute;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.available {
+    background-color: #ff545f;
 }
