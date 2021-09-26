@@ -1,19 +1,22 @@
-$(function() {
-    const myAmenities = {};
-    const li = [];
-    const DId = $(this).attr('data-id');
-    const DName = $(this).attr('data-name');
-    $('.amenities input[type="checkbox"]').on('click', function() {
-        if($(this).prop("checked") == true) {
-          myAmenities[DId] = DName;
-        } else {
-          delete (myAmenities[DId]);
+/**
+ * script must be executed only when DOM is loaded
+ * Listen for changes on each input checkbox tag
+ */
+$(document).ready(() => {
+  const amenities = {};
+  $('.amenities ul li input').bind('change', (e) => {
+    const element = e.target;
+    const id = element.dataset.id;
+    const name = element.dataset.name;
+    if (element.checked) {
+      amenities[name] = id;
+    } else {
+      const amenityKey = Object.keys(amenities).find(key => amenities[key] === id);
+      delete amenities[amenityKey];
     }
-      for (const key in myAmenities) {
-      li.push(myAmenities[key]);
-    }
-      const res = li.join(', ');
-    $('div.amenities > h4').text(res);
-    li = [];
-    });
+    const amenityNames = Object.keys(amenities);
+    const substring = amenityNames.join(', ').substring(0, 28);
+    const trailling = substring.length >= 28 ? '...' : '';
+    $('.amenities h4').text(`${substring}${trailling}`);
+  });
 });
